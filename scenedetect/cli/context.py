@@ -112,6 +112,8 @@ class CliContext:
         self.scene_manager: SceneManager = None
         self.stats_manager: StatsManager = None
 
+
+
         # Main `scenedetect` Options
         self.output_directory: str = None        # -o/--output
         self.quiet_mode: bool = None             # -q/--quiet or -v/--verbosity quiet

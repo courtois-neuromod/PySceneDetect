@@ -152,25 +152,55 @@ def write_scene_list(output_csv_file: TextIO,
             ["Timecode List:"] +
             cut_list if cut_list else [start.get_timecode() for start, _ in scene_list[1:]])
     csv_writer.writerow([
-        "Scene Number", "Start Frame", "Start Timecode", "Start Time (seconds)", "End Frame",
-        "End Timecode", "End Time (seconds)", "Length (frames)", "Length (timecode)",
-        "Length (seconds)"
+        "Start Frame"
     ])
     for i, (start, end) in enumerate(scene_list):
         duration = end - start
         csv_writer.writerow([
-            '%d' % (i + 1),
-            '%d' % (start.get_frames() + 1),
-            start.get_timecode(),
-            '%.3f' % start.get_seconds(),
-            '%d' % end.get_frames(),
-            end.get_timecode(),
-            '%.3f' % end.get_seconds(),
-            '%d' % duration.get_frames(),
-            duration.get_timecode(),
-            '%.3f' % duration.get_seconds()
+            '%d' % (start.get_frames() + 1)
         ])
 
+# THE ORIGINAL
+# def write_scene_list(output_csv_file: TextIO,
+#                      scene_list: Iterable[Tuple[FrameTimecode, FrameTimecode]],
+#                      include_cut_list: bool = True,
+#                      cut_list: Optional[Iterable[FrameTimecode]] = None) -> None:
+#     """Writes the given list of scenes to an output file handle in CSV format.
+#
+#     Arguments:
+#         output_csv_file: Handle to open file in write mode.
+#         scene_list: List of pairs of FrameTimecodes denoting each scene's start/end FrameTimecode.
+#         include_cut_list: Bool indicating if the first row should include the timecodes where
+#             each scene starts. Should be set to False if RFC 4180 compliant CSV output is required.
+#         cut_list: Optional list of FrameTimecode objects denoting the cut list (i.e. the frames
+#             in the video that need to be split to generate individual scenes). If not specified,
+#             the cut list is generated using the start times of each scene following the first one.
+#     """
+#     csv_writer = csv.writer(output_csv_file, lineterminator='\n')
+#     # If required, output the cutting list as the first row (i.e. before the header row).
+#     if include_cut_list:
+#         csv_writer.writerow(
+#             ["Timecode List:"] +
+#             cut_list if cut_list else [start.get_timecode() for start, _ in scene_list[1:]])
+#     csv_writer.writerow([
+#         "Scene Number", "Start Frame", "Start Timecode", "Start Time (seconds)", "End Frame",
+#         "End Timecode", "End Time (seconds)", "Length (frames)", "Length (timecode)",
+#         "Length (seconds)"
+#     ])
+#     for i, (start, end) in enumerate(scene_list):
+#         duration = end - start
+#         csv_writer.writerow([
+#             '%d' % (i + 1),
+#             '%d' % (start.get_frames() + 1),
+#             start.get_timecode(),
+#             '%.3f' % start.get_seconds(),
+#             '%d' % end.get_frames(),
+#             end.get_timecode(),
+#             '%.3f' % end.get_seconds(),
+#             '%d' % duration.get_frames(),
+#             duration.get_timecode(),
+#             '%.3f' % duration.get_seconds()
+#         ])
 
 def write_scene_list_html(output_html_filename,
                           scene_list,
@@ -199,7 +229,7 @@ def write_scene_list_html(output_html_filename,
         css = """
         table.mytable {
             font-family: times;
-            font-size:12px;
+            font-size:12px;IndentationError
             color:#000000;
             border-width: 1px;
             border-color: #eeeeee;
@@ -207,7 +237,7 @@ def write_scene_list_html(output_html_filename,
             background-color: #ffffff;
             width=100%;
             max-width:550px;
-            table-layout:fixed;
+            table-layout:fixIndentationErrored;
         }
         table.mytable th {
             border-width: 1px;
@@ -223,7 +253,7 @@ def write_scene_list_html(output_html_filename,
             border-style: solid;
             border-color: #eeeeee;
         }
-        #code {
+        #code {IndentationError
             display:inline;
             font-family: courier;
             color: #3d9400;
@@ -235,33 +265,44 @@ def write_scene_list_html(output_html_filename,
         """
 
     # Output Timecode list
-    timecode_table = SimpleTable(
+    timecode_table = SimpleTIndentationErrorable(
         [["Timecode List:"] +
          (cut_list if cut_list else [start.get_timecode() for start, _ in scene_list[1:]])],
         css_class=css_class)
 
+    # ORIGINAL
     # Output list of scenes
+    # header_row = [
+    #     "Scene Number", "Start Frame", "Start Timecode", "Start Time (seconds)", "End Frame",
+    #     "End Timecode", "EIndentationErrornd Time (seconds)", "Length (frames)", "Length (timecode)",
+    #     "Length (seconds)"
+    # ]
+    # for i, (start, end) in enumerate(scene_list):
+    #     duration = end - start
+    #
+    #     row = SimpleTableRow([
+    #         '%d' % (i + 1),
+    #         '%d' % (start.get_frames() + 1),
+    #         start.get_timecode(),
+    #         '%.3f' % start.get_seconds(),
+    #         '%d' % end.get_frames(),
+    #         end.get_timecode(),
+    #         '%.3f' % end.get_seconds(),
+    #         '%d' % duration.get_frames(),
+    #         duration.get_timecode(),
+    #         '%.3f' % duration.get_seconds()
+    #     ])
+# Output list of scenes
+
     header_row = [
-        "Scene Number", "Start Frame", "Start Timecode", "Start Time (seconds)", "End Frame",
-        "End Timecode", "End Time (seconds)", "Length (frames)", "Length (timecode)",
-        "Length (seconds)"
-    ]
+            "Start Frame"
+        ]
     for i, (start, end) in enumerate(scene_list):
         duration = end - start
 
         row = SimpleTableRow([
-            '%d' % (i + 1),
-            '%d' % (start.get_frames() + 1),
-            start.get_timecode(),
-            '%.3f' % start.get_seconds(),
-            '%d' % end.get_frames(),
-            end.get_timecode(),
-            '%.3f' % end.get_seconds(),
-            '%d' % duration.get_frames(),
-            duration.get_timecode(),
-            '%.3f' % duration.get_seconds()
-        ])
-
+                '%d' % (start.get_frames() + 1),
+            ])
         if image_filenames:
             for image in image_filenames[i]:
                 row.add_cell(
