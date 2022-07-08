@@ -145,18 +145,20 @@ def write_scene_list(output_csv_file: TextIO,
             in the video that need to be split to generate individual scenes). If not specified,
             the cut list is generated using the start times of each scene following the first one.
     """
-    csv_writer = csv.writer(output_csv_file, lineterminator='\n')
+    csv_writer = csv.writer(output_csv_file, delimiter='\t', lineterminator='\n')
     # If required, output the cutting list as the first row (i.e. before the header row).
     if include_cut_list:
         csv_writer.writerow(
             ["Timecode List:"] +
             cut_list if cut_list else [start.get_timecode() for start, _ in scene_list[1:]])
     csv_writer.writerow([
-        "Start Frame"
+        "onset", "duration", "onset_frame"
     ])
     for i, (start, end) in enumerate(scene_list):
         duration = end - start
         csv_writer.writerow([
+            '%.3f' % start.get_seconds(),
+            '%.3f' % duration.get_seconds()
             '%d' % (start.get_frames() + 1)
         ])
 
