@@ -1,7 +1,7 @@
 
 ![PySceneDetect](https://raw.githubusercontent.com/Breakthrough/PySceneDetect/master/docs/img/pyscenedetect_logo_small.png)
 ==========================================================
-Video Scene Cut Detection and Analysis Tool
+Video Scene Cut Detection and Analysis Tool. This repo is forked from <a href="https://github.com/Breakthrough/PySceneDetect"> here</a> and modified slightly to make output files bids-compliant. 
 ----------------------------------------------------------
 
 [![Build Status](https://img.shields.io/travis/com/Breakthrough/PySceneDetect/master)](https://travis-ci.com/github/Breakthrough/PySceneDetect) [![PyPI Status](https://img.shields.io/pypi/status/scenedetect.svg)](https://pypi.python.org/pypi/scenedetect/) [![LGTM Analysis](https://img.shields.io/lgtm/grade/python/github/Breakthrough/PySceneDetect.svg)](https://lgtm.com/projects/g/Breakthrough/PySceneDetect) [![PyPI Version](https://img.shields.io/pypi/v/scenedetect?color=blue)](https://pypi.python.org/pypi/scenedetect/)  [![PyPI License](https://img.shields.io/pypi/l/scenedetect.svg)](http://pyscenedetect.readthedocs.org/en/latest/copyright/)
