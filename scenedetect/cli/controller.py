@@ -136,12 +136,12 @@ def _list_scenes(context: CliContext, scene_list: List[Tuple[FrameTimecode, Fram
     if context.scene_list_output:
         scene_list_filename = Template(
             context.scene_list_name_format).safe_substitute(VIDEO_NAME=context.video_stream.name)
-        if not scene_list_filename.lower().endswith('.csv'):
-            scene_list_filename += '.csv'
+        if not scene_list_filename.lower().endswith('.tsv'):
+            scene_list_filename += '.tsv'
         scene_list_path = get_and_create_path(
             scene_list_filename, context.scene_list_directory
             if context.scene_list_directory is not None else context.output_directory)
-        logger.info('Writing scene list to CSV file:\n  %s', scene_list_path)
+        logger.info('Writing scene list to TSV file:\n  %s', scene_list_path)
         with open(scene_list_path, 'wt') as scene_list_file:
             write_scene_list(
                 output_csv_file=scene_list_file,

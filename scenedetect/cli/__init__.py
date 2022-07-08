@@ -679,7 +679,7 @@ def export_html_command(
     '--filename',
     '-f',
     metavar='NAME',
-    default='$VIDEO_NAME-Scenes.csv',
+    default='$VIDEO_NAME-Scenes.tsv',
     type=click.STRING,
     help='Filename format to use for the scene list CSV file. You can use the'
     ' $VIDEO_NAME macro in the file name. Note that you may have to wrap'
