@@ -158,7 +158,7 @@ def write_scene_list(output_csv_file: TextIO,
         duration = end - start
         csv_writer.writerow([
             '%.3f' % start.get_seconds(),
-            '%.3f' % duration.get_seconds()
+            '%.3f' % duration.get_seconds(),
             '%d' % (start.get_frames() + 1)
         ])
 

@@ -104,7 +104,7 @@ CONFIG_MAP: ConfigDict = {
     },
     'list-scenes': {
         'output': '',
-        'filename': '$VIDEO_NAME-Scenes.csv',
+        'filename': '$VIDEO_NAME-Scenes.tsv',
         'no-output-file': False,
         'quiet': False,
         'skip-cuts': False,
